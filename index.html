@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <section id="sectionHome">
+        <div id="divWrapper">
+            <div id="divData">
+                <p>Monday</p>
+                <p>06-09-2021</p>
+            </div>
+            <div id="divAdd">
+                <input type="text" name="AddTask" id="addTask" placeholder="Take the garbage out">
+                <button id="buttonAddTask" onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()">+</button>
+            </div>
+            <div id="divList">
+                <p>You have ... pending items</p>
+                <div id="listWrapper">
+                    <label>
+                        <input type="checkbox" name="inputTasks">
+                        learn JS
+                    </label>
+                    <label>
+                        <input type="checkbox" name="inputTasks">
+                        study english
+                    </label>
+                    <label>
+                        <input type="checkbox" name="inputTasks">
+                        upload project
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="divButtons">
+            <button id="complete">Show Complete</button>
+            <button id="clear">Clear All</button>
+        </div>
+    </section>
+</body>
+</html>
