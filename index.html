@@ -16,25 +16,34 @@
                 <p>06-09-2021</p>
             </div>
             <div id="divAdd">
-                <input type="text" name="AddTask" id="addTask" placeholder="Take the garbage out">
-                <button id="buttonAddTask" onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()">+</button>
+                <input type="text" id="addTask" placeholder="Take the garbage out">
+                <button id="buttonAddTask" onclick="clicarAdd()" onmouseenter="entrarAdd()" onmouseout="sairAdd()">+</button>
             </div>
             <div id="divList">
                 <p>You have ... pending items</p>
-                <div id="listWrapper">
-                    <label>
-                        <input type="checkbox" name="inputTasks">
-                        learn JS
-                    </label>
-                    <label>
-                        <input type="checkbox" name="inputTasks">
-                        study english
-                    </label>
-                    <label>
-                        <input type="checkbox" name="inputTasks">
-                        upload project
-                    </label>
-                </div>
+                <ul id="listWrapper">
+                    <!--
+                        <li>
+                        <label>
+                            <input type="checkbox" name="inputTasks">
+                            learn JS
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="inputTasks">
+                            study english
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="inputTasks">
+                            upload project
+                        </label>
+                    </li>
+                    -->
+                    
+                </ul>
             </div>
         </div>
         <div id="divButtons">
