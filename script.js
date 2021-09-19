@@ -1,34 +1,48 @@
-//Eventos de mouse
-var buttonAddTask = document.getElementById('buttonAddTask');
-var newTask = document.getElementById('addTask');
-var list = document.getElementById('listWrapper');
+//PARTE LOGICA
+//Criar lista em branco
+let taskList = []
 
+//
+function addTask(title) {
+    taskList.push({
+        title,
+        done: false
+    })
+}
+
+//PARTE IMPLEMENTAÇAO
+//Renderizar lista
+function renderList(taskList) {
+    //referencia ul e cria listElements vazia
+    var taskListElement = document.getElementById('listWrapper');
+    let listElements = ''
+    //listElements recebe cada item da taskList + HTML da li
+    for (const item of taskList) {
+        listElements += `<li><label><input type="checkbox" name="inputTasks"> ${item.title}</label></li>`
+    }
+    //Insere a li(listElement) na ul(taskListElement)
+    taskListElement.innerHTML = listElements
+}
+
+//clicarAdd executa 2 funções: addTask e renderList
 function clicarAdd() {
+    //referencia button, input e ul
     var buttonAddTask = document.getElementById('buttonAddTask');
     var newTask = document.getElementById('addTask');
-    var list = document.getElementById('listWrapper');
+    var taskListElement = document.getElementById('listWrapper');
 
-    buttonAddTask.style.background = 'rgb(126, 91, 255)';
-    list.innerHTML += `<li><label>
-    <input type="checkbox" name="inputTasks"> ${newTask.value}</label></li>`
+    //chama a função addTask colocando como parâmetro o title da newTask
+    addTask(newTask.value)
+    
+    //limpar input 
     newTask.value = ''
-}
-function entrarAdd() {
-    var buttonAddTask = document.getElementById('buttonAddTask');
-    buttonAddTask.style.background = 'rgb(177, 185, 247)';
-}
-function sairAdd() {
-    var buttonAddTask = document.getElementById('buttonAddTask');
-    buttonAddTask.style.background = 'rgb(218, 218, 218)';
+
+    //Adicionar tarefa na lista
+    return renderList(taskList)
 }
 
 //Exibir lista de tarefas
 
-
-//Adicionar tarefa
-
-
 //Remover tarefa
-
 
 //Exibir lista de tarefas completadas

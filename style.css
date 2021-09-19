@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(rgb(252, 104, 93), rgb(255, 77, 115));
+    background: linear-gradient(rgb(252, 104, 70), rgb(255, 77, 115));
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     height: 100vh;
@@ -22,7 +22,7 @@ body {
     margin-bottom: 1rem;
 }
 #divData {
-    color: rgb(252, 104, 93);
+    color: rgb(252, 104, 70);
     line-height: 4px;
     margin-top: 2rem;
 }
@@ -53,8 +53,14 @@ body {
     border-style: none;
     border-radius: 4px;
 }
+#buttonAddTask:disabled {
+    background: ;
+}
 #buttonAddTask:hover {
     background: rgb(177, 185, 247);
+}
+#buttonAddTask:active {
+    background: rgb(126, 91, 255);
 }
  #divList {
     color: rgb(104, 104, 104);
