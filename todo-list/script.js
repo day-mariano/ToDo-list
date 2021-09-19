@@ -10,6 +10,12 @@ function addTask(title) {
     })
 }
 
+//Remover tarefa
+function removeTask(index) {
+    taskList.splice(index,1)
+    renderList(taskList)
+}
+
 //PARTE IMPLEMENTAÇAO
 //Renderizar lista
 function renderList(taskList) {
@@ -17,8 +23,9 @@ function renderList(taskList) {
     var taskListElement = document.getElementById('listWrapper');
     let listElements = ''
     //listElements recebe cada item da taskList + HTML da li
-    for (const item of taskList) {
-        listElements += `<li><label><input type="checkbox" name="inputTasks"> ${item.title}</label></li>`
+    for (const index in taskList) {
+        const item = taskList[index]
+        listElements += `<li><label><input type="checkbox" name="inputTasks"> ${item.title}</label> <button onclick="removeTask(${index})"> &times;</button></li>`
     }
     //Insere a li(listElement) na ul(taskListElement)
     taskListElement.innerHTML = listElements
@@ -41,8 +48,8 @@ function clicarAdd() {
     return renderList(taskList)
 }
 
-//Exibir lista de tarefas
-
-//Remover tarefa
+//Marcar tarefa
 
 //Exibir lista de tarefas completadas
+
+//Limpar todas tarefas

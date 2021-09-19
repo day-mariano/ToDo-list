@@ -53,9 +53,6 @@ body {
     border-style: none;
     border-radius: 4px;
 }
-#buttonAddTask:disabled {
-    background: ;
-}
 #buttonAddTask:hover {
     background: rgb(177, 185, 247);
 }
@@ -72,13 +69,13 @@ body {
 }
 #listWrapper li {
     list-style: none;
-}
-#listWrapper label{
     background-color: rgb(211, 222, 241);
     display: block;
     padding: 8px;
     margin: 8px 0;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
 }
 #divButtons {
     margin-bottom: 8px;
