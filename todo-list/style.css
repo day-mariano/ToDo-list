@@ -42,6 +42,7 @@ body {
 }
 #addTask::placeholder {
     color: rgb(218, 218, 218);
+    font-style: italic;
 }
 #buttonAddTask {
     width: 60px;
@@ -77,6 +78,18 @@ body {
     display: flex;
     justify-content: space-between;
 }
+#listWrapper li label input[type="checkbox"] {
+    border-style: solid;
+    border-color: violet;
+    background-color: teal;
+}
+#buttonRemoveTask {
+    color: white;
+    background: rgb(255, 77, 90);
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 #divButtons {
     margin-bottom: 8px;
 }
@@ -86,7 +99,17 @@ body {
     font-weight: bold;
     background: none;
     margin: 8px;
+    padding: 12px;
     border-style: none;
+    border-radius: 4px;
     margin-bottom: 0px;
+    cursor: pointer;
+}
+#divButtons button:hover {
+    /*border-style: solid;
+    border-color:  rgb(218, 218, 218);
+    border-width: 1px;*/
+    background-color:  rgb(177, 185, 247);
+    color: white;
 }
 

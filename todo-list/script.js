@@ -2,7 +2,7 @@
 //Criar lista em branco
 let taskList = []
 
-//
+//Cria um objeto na lista com done false
 function addTask(title) {
     taskList.push({
         title,
@@ -14,6 +14,52 @@ function addTask(title) {
 function removeTask(index) {
     taskList.splice(index,1)
     renderList(taskList)
+    sumTasks()
+}
+
+//Marcar tarefa
+function checkTask(index) {
+    taskList[index].done= !taskList[index].done
+    sumTasks()
+}
+
+//Total de itens pendentes: tamanho da lista com done false
+function sumTasks() {
+    tasksSumTotal = document.getElementById('tasksSum')
+
+    var total = 0
+
+    //Para cada item na lista com o done false soma +1 
+    for (const item of taskList) {
+        if (item.done == false) {
+            total++
+        }
+    }
+    tasksSumTotal.innerHTML = `You have ${total} pending items`
+}
+//Exibir lista de tarefas completadas
+var isFilteringDone = false
+
+function toggleTaskList() {
+    if (isFilteringDone) {
+        renderList(taskList)
+        isFilteringDone = false
+        var buttonShow = document.getElementById('show')
+        buttonShow.innerHTML = `Show complete`
+    } else {
+        var buttonShow = document.getElementById('show')
+        buttonShow.innerHTML = `Show All`
+
+        isFilteringDone = true
+        let completeTasks = []
+
+        for (const item of taskList) {
+            if (item.done == true) {
+                completeTasks.push(item)
+            }
+            renderList(completeTasks)
+        }
+    }
 }
 
 //PARTE IMPLEMENTAÇAO
@@ -23,9 +69,16 @@ function renderList(taskList) {
     var taskListElement = document.getElementById('listWrapper');
     let listElements = ''
     //listElements recebe cada item da taskList + HTML da li
-    for (const index in taskList) {
+    for (let index in taskList) {
         const item = taskList[index]
-        listElements += `<li><label><input type="checkbox" name="inputTasks"> ${item.title}</label> <button onclick="removeTask(${index})"> &times;</button></li>`
+        listElements += `
+            <li>
+                <label>
+                    <input type="checkbox" onchange="checkTask(${index})" ${item.done ? 'checked' : ''}> ${item.title}
+                </label>
+                <button id="buttonRemoveTask" onclick="removeTask(${index})">&times;</button>
+            </li>
+        `
     }
     //Insere a li(listElement) na ul(taskListElement)
     taskListElement.innerHTML = listElements
@@ -34,22 +87,19 @@ function renderList(taskList) {
 //clicarAdd executa 2 funções: addTask e renderList
 function clicarAdd() {
     //referencia button, input e ul
-    var buttonAddTask = document.getElementById('buttonAddTask');
-    var newTask = document.getElementById('addTask');
-    var taskListElement = document.getElementById('listWrapper');
+    var newTaskInput = document.getElementById('addTask');
 
-    //chama a função addTask colocando como parâmetro o title da newTask
-    addTask(newTask.value)
+    //chama a função addTask colocando como parâmetro o title da newTaskInput
+    addTask(newTaskInput.value)
     
-    //limpar input 
-    newTask.value = ''
+    //limpar input
+    newTaskInput.value = ''
+
+    //Soma os itens não marcados
+    sumTasks()
 
     //Adicionar tarefa na lista
-    return renderList(taskList)
+    renderList(taskList)
 }
-
-//Marcar tarefa
-
-//Exibir lista de tarefas completadas
 
 //Limpar todas tarefas
