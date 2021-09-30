@@ -41,28 +41,39 @@ function sumTasks() {
 var isFilteringDone = false
 
 function toggleTaskList() {
+    var buttonShow = document.getElementById('show')
     if (isFilteringDone) {
         renderList(taskList)
         isFilteringDone = false
-        var buttonShow = document.getElementById('show')
         buttonShow.innerHTML = `Show complete`
     } else {
-        var buttonShow = document.getElementById('show')
         buttonShow.innerHTML = `Show All`
 
         isFilteringDone = true
         let completeTasks = []
 
         for (const item of taskList) {
-            if (item.done == true) {
+            if (item.done) {
                 completeTasks.push(item)
             }
-            renderList(completeTasks)
         }
+        renderList(completeTasks)
     }
+}
+//Limpar todas tarefas completadas: criar uma variavel nova apenas com as tasks false e substituir na ul
+function clearAll() {
+    let uncompletedTasks = []
+    for (const item of taskList) {
+        if (item.done == false) {
+            uncompletedTasks.push(item)
+        }
+        taskList = uncompletedTasks
+    }
+    renderList(taskList)
 }
 
 //PARTE IMPLEMENTAÇAO
+
 //Renderizar lista
 function renderList(taskList) {
     //referencia ul e cria listElements vazia
@@ -86,6 +97,11 @@ function renderList(taskList) {
 
 //clicarAdd executa 2 funções: addTask e renderList
 function clicarAdd() {
+    //validação de input vazio
+    var inputElement = document.getElementById('addTask')
+    if (inputElement.value === '') {
+        return
+    }
     //referencia button, input e ul
     var newTaskInput = document.getElementById('addTask');
 
@@ -101,5 +117,3 @@ function clicarAdd() {
     //Adicionar tarefa na lista
     renderList(taskList)
 }
-
-//Limpar todas tarefas
