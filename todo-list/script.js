@@ -6,13 +6,22 @@ let taskList = []
 function addTask(title) {
     taskList.push({
         title,
-        done: false
+        done: false,
+        createdAt: new Date(),
     })
 }
 
 //Remover tarefa
-function removeTask(index) {
-    taskList.splice(index,1)
+function removeTask(date) {
+    let taskIndex;
+    for (const index in taskList) {
+        const item = taskList[index]
+        if (item.createdAt.getTime() === date) {
+            taskIndex = index;
+            break;
+        }
+    }
+    taskList.splice(taskIndex, 1)
     renderList(taskList)
     sumTasks()
 }
@@ -71,8 +80,16 @@ function clearAll() {
     }
     renderList(taskList)
 }
-
 //PARTE IMPLEMENTAÇAO
+//Data
+function updateDate () {
+    var dateElement = document.getElementById('divDate')
+    var getCurrentDate = new Date()
+    var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+    var currentDate = new Intl.DateTimeFormat('en-GB', options).format(getCurrentDate);
+
+    divDate.innerHTML = `<p>${currentDate}</p>`
+}
 
 //Renderizar lista
 function renderList(taskList) {
@@ -87,7 +104,7 @@ function renderList(taskList) {
                 <label>
                     <input type="checkbox" onchange="checkTask(${index})" ${item.done ? 'checked' : ''}> ${item.title}
                 </label>
-                <button id="buttonRemoveTask" onclick="removeTask(${index})">&times;</button>
+                <button id="buttonRemoveTask" onclick="removeTask(${item.createdAt.getTime()})">&times;</button>
             </li>
         `
     }

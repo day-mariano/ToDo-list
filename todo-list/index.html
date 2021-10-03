@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body>
+<body onload="updateDate()">
     <section id="sectionHome">
         <div id="divWrapper">
-            <div id="divData">
-                <p>Monday</p>
-                <p>06-09-2021</p>
+            <div id="divDate">
             </div>
             <div id="divAdd">
-                <input type="text" id="addTask" placeholder="Take the garbage out">
+                <input type="text" id="addTask" placeholder="Add your new task">
                 <button id="buttonAddTask" onclick="clicarAdd()" >+</button>
             </div>
             <div id="divList">
