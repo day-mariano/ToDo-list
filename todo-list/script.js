@@ -10,7 +10,6 @@ function addTask(title) {
         createdAt: new Date(),
     })
 }
-
 //Remover tarefa
 function removeTask(date) {
     let taskIndex;
@@ -23,28 +22,23 @@ function removeTask(date) {
     }
     taskList.splice(taskIndex, 1)
     renderList(taskList)
-    sumTasks()
+    renderPendingTasksTotal()
 }
-
 //Marcar tarefa
 function checkTask(index) {
     taskList[index].done= !taskList[index].done
-    sumTasks()
+    renderPendingTasksTotal()
 }
-
 //Total de itens pendentes: tamanho da lista com done false
 function sumTasks() {
-    tasksSumTotal = document.getElementById('tasksSum')
-
     var total = 0
-
     //Para cada item na lista com o done false soma +1 
     for (const item of taskList) {
         if (item.done == false) {
             total++
         }
     }
-    tasksSumTotal.innerHTML = `You have ${total} pending items`
+    return total
 }
 //Exibir lista de tarefas completadas
 var isFilteringDone = false
@@ -88,9 +82,13 @@ function updateDate () {
     var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
     var currentDate = new Intl.DateTimeFormat('en-GB', options).format(getCurrentDate);
 
-    divDate.innerHTML = `<p>${currentDate}</p>`
+    dateElement.innerHTML = `<p>${currentDate}</p>`
 }
-
+//Implementação no HTML a soma das tasks pendentes
+function renderPendingTasksTotal() {
+    tasksSumTotal = document.getElementById('tasksSum')
+    tasksSumTotal.innerHTML = `You have ${sumTasks()} pending items`
+}
 //Renderizar lista
 function renderList(taskList) {
     //referencia ul e cria listElements vazia
@@ -111,25 +109,22 @@ function renderList(taskList) {
     //Insere a li(listElement) na ul(taskListElement)
     taskListElement.innerHTML = listElements
 }
-
 //clicarAdd executa 2 funções: addTask e renderList
 function clicarAdd() {
-    //validação de input vazio
     var inputElement = document.getElementById('addTask')
+
+    //validação de input vazio
     if (inputElement.value === '') {
         return
     }
-    //referencia button, input e ul
-    var newTaskInput = document.getElementById('addTask');
-
-    //chama a função addTask colocando como parâmetro o title da newTaskInput
-    addTask(newTaskInput.value)
+    //chama a função addTask colocando como parâmetro o title do inputElement
+    addTask(inputElement.value)
     
     //limpar input
-    newTaskInput.value = ''
+    inputElement.value = ''
 
     //Soma os itens não marcados
-    sumTasks()
+    renderPendingTasksTotal()
 
     //Adicionar tarefa na lista
     renderList(taskList)
